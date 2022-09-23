@@ -4,43 +4,43 @@ from django.shortcuts import render
 from urllib import request
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import PrincipalSerializers,InscribirseSerializers
-from .models import Principal, inscribirse
+from .serializers import AdmitirSerializers, AdmitidoSerializers
+from .models import Admitido, Admitir
 from rest_framework import status
 from django.http import Http404
 from django.shortcuts import render
 
 # Create your views here.
-class Principal_APIView(APIView):
+class Admitir_APIView(APIView):
     def post(self, request, format=None):
         print(request.data)
-        serializer=PrincipalSerializers(data=request.data)
+        serializer=AdmitirSerializers(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
-class Principal_APIView_List(APIView):
+class Admitir_APIView_List(APIView):
 
     def get(self, request, format=None, *args, **kwargs):
-        Princ = Principal.objects.all()
-        serializer = PrincipalSerializers(Princ, many=True)
+        Princ = Admitir.objects.all()
+        serializer = AdmitirSerializers(Princ, many=True)
         return Response(serializer.data)
 
 
-class inscripciones_APIView(APIView):
+class Admitido_APIView(APIView):
     def post(self, request, format=None):
         print(request.data)
-        serializer=InscribirseSerializers(data=request.data)
+        serializer=AdmitidoSerializers(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
-class inscripciones_APIView_List(APIView):
+class Admitido_APIView_List(APIView):
 
     def get(self, request, format=None, *args, **kwargs):
-        inscripcion = inscribirse.objects.all()
-        serializer = InscribirseSerializers(inscripcion, many=True)
+        inscripcion = Admitido.objects.all()
+        serializer = AdmitidoSerializers(inscripcion, many=True)
         return Response(serializer.data)
