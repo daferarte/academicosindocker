@@ -20,6 +20,9 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('personas.urls')),
+    path('', include('matricula.urls')),
+     path('', include('pagomatricula.urls')),
+
 ]
 
 
