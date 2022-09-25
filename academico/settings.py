@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'docente',
     'estudiante',
     'horario',
+    'auditoria',
 ]
 
 MIDDLEWARE = [
